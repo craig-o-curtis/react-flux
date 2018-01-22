@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ListGroupItem } from 'reactstrap';
+import './ForumAnswer.css';
+
 
 const ForumAnswer = (props) => {
 
     return (
-        <div className="panel panel-default">
-            <div className="panel-body">
-                {props.answer.body ? props.answer.body : null}
-            </div>
-        </div>
+        <ListGroupItem className="ForumAnswer">
+            {props.answer.body ? props.answer.body : null}
+        </ListGroupItem>
     );
 
 }

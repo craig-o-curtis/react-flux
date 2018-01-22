@@ -7,11 +7,11 @@ import PeopleSquare from './PeopleSquare/PeopleSquare';
 import ForumQuestion from './ForumQuestion/ForumQuestion';
 import ForumAnswers from './ForumAnswers/ForumAnswers';
 import ForumAddAnswerBox from './ForumAddAnswerBox/ForumAddAnswerBox';
-
+import EventEmitter from '../eventEmitter';
 class Forum extends Component {
-    constructor() {
-        super();
-    }
+    // constructor() {
+    //     super();
+    // }
     state = {
         allAnswers : [
             {body: 'a'},
@@ -21,6 +21,12 @@ class Forum extends Component {
     };
 
     componentWillMount() {
+        let event = new EventEmitter();
+        event.on('HEARD_WILL', () => {
+            console.log('HEARD WILL');
+          });
+          event.emit('HEARD_WILL');
+
         fetch('https://swapi.co/api/people/')
         .then(res => res.json())
         .then(res => {
@@ -30,6 +36,14 @@ class Forum extends Component {
     }
     componentDidMount() {
 
+    }
+
+    handleClick() {
+        let event = new EventEmitter();
+        event.on('a', ()=> {console.log('test')});
+        event.on('b', ()=> {console.log('test2')});
+        event.emit('b');
+        event.emit('a');
     }
 
     render() {
@@ -54,7 +68,7 @@ class Forum extends Component {
                             <ForumQuestion />
                             <ForumAnswers allAnswers={this.state.allAnswers} />
                             <h4>Add an answer</h4>
-                            <ForumAddAnswerBox />
+                            <ForumAddAnswerBox clicked={this.handleClick} />
                         </Col>
                     </Row>
                 </Container>

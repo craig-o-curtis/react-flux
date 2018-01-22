@@ -1,15 +1,16 @@
 import React from 'react';
 import './ForumAddAnswerBox.css';
+import { InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
 
 const ForumAddAnswerBox = (props) => {
     return (
         <div className="ForumAddAnswerBox">
-            <textarea id="addAnswer"
-                className="col-md-6 col-xs-8">
-            </textarea>
-
-            &nbsp;<input type="button" 
-                className="btn btn-primary" value="Add" />
+            <InputGroup>
+                <Input />
+                <InputGroupAddon addontype="append">
+                    <Button color="primary" onClick={props.clicked}>Add Answer</Button>
+                </InputGroupAddon>
+            </InputGroup>
         </div>
     );
 }

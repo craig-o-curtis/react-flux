@@ -1,6 +1,7 @@
 import React from 'react';
 import './ForumAnswers.css';
 
+import { ListGroup } from 'reactstrap';
 import ForumAnswer from './ForumAnswer/ForumAnswer';
 
 const ForumAnswers = (props) => {
@@ -21,11 +22,11 @@ const ForumAnswers = (props) => {
     // VIDEO SYNTAX /\ /\ /\ /\
 
     return (
-        <div>
+        <ListGroup className="ForumAnswers">
             { props.allAnswers ? props.allAnswers.map( (ans, idx) => (
                 <ForumAnswer key={idx} id={idx} answer={ans} />
             ) ) : null }
-        </div>
+        </ListGroup>
     );
 
 
