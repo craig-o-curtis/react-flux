@@ -6,10 +6,12 @@ class Dispatcher {
 
     register(callback) {
         console.log(0)
-        console.log('Dispatcher.js grabs callback fn from App.js, doenst call it')
+        console.log('Dispatcher.js grabs callback fn from App.js, doesnt call it')
         console.log(0)
         let id = `CID_${this._lastId++}`;
         this._callbacks[id] = callback;
+        console.log('makes inner _callbacks[CID_1] method')
+        console.log(this._callbacks)
         return id;
     }
 

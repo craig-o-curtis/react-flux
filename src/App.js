@@ -49,7 +49,8 @@ class App extends Component {
     );
   }
 }
-
+console.log(-1)
+console.log('runs in App.js first, calls ForumDispatcher.register method')
 ForumDispatcher.register((action) => {
   console.log(3)
   console.log('App.js calls registered action in App.js')
@@ -57,5 +58,6 @@ ForumDispatcher.register((action) => {
   console.log(`recieved action ${action}`);
   console.log(action)
 });
+console.log(-1)
 
 export default App;
