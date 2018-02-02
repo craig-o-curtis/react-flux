@@ -7,10 +7,18 @@ import PeopleSquare from './PeopleSquare/PeopleSquare';
 import ForumQuestion from './ForumQuestion/ForumQuestion';
 import ForumAnswers from './ForumAnswers/ForumAnswers';
 import ForumAddAnswerBox from './ForumAddAnswerBox/ForumAddAnswerBox';
-import EventEmitter from '../eventEmitter';
+import EventEmitter from '../Flux/eventEmitter';
+import ForumDispatcher from '../Flux/ForumDispatcher';
 class Forum extends Component {
     // constructor() {
     //     super();
+    //     state : {
+    //         allAnswers : [
+    //             {body: 'a'},
+    //             {body: 'b'},
+    //             {body: 'c'},
+    //         ]
+    //     };
     // }
     state = {
         allAnswers : [
@@ -20,13 +28,7 @@ class Forum extends Component {
         ]
     };
 
-    componentWillMount() {
-        let event = new EventEmitter();
-        event.on('HEARD_WILL', () => {
-            console.log('HEARD WILL');
-          });
-          event.emit('HEARD_WILL');
-
+    componentWillMount() {         
         fetch('https://swapi.co/api/people/')
         .then(res => res.json())
         .then(res => {
@@ -35,15 +37,24 @@ class Forum extends Component {
         })
     }
     componentDidMount() {
-
+        let event = new EventEmitter();
+        event.emit('WILL_MOUNT');
     }
 
-    handleClick() {
-        let event = new EventEmitter();
-        event.on('a', ()=> {console.log('test')});
-        event.on('b', ()=> {console.log('test2')});
-        event.emit('b');
-        event.emit('a');
+    // Works... Why?
+    handleAddAnswer = (e) => {
+        let arr = this.state.allAnswers;
+        arr.push({'body':e.body});
+        this.setState({
+            allAnswers: arr
+        });
+        console.log(1)
+        console.log('Forum.js call dispatch on handleAnswer method')
+        console.log(1)
+        ForumDispatcher.dispatch({
+            actionType : 'FORUM_ANSWER_ADDED',
+            newAnswer : e.body
+        });
     }
 
     render() {
@@ -68,7 +79,7 @@ class Forum extends Component {
                             <ForumQuestion />
                             <ForumAnswers allAnswers={this.state.allAnswers} />
                             <h4>Add an answer</h4>
-                            <ForumAddAnswerBox clicked={this.handleClick} />
+                            <ForumAddAnswerBox onAddAnswer={this.handleAddAnswer} />
                         </Col>
                     </Row>
                 </Container>

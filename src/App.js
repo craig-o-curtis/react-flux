@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import Forum from './components/Forum';
 import ForumHeader from './components/ForumHeader/ForumHeader';
 
-import EventEmitter from './eventEmitter';
+import ForumDispatcher from './Flux/ForumDispatcher';
+import EventEmitter from './Flux/eventEmitter';
 
 import './App.css';
 
@@ -16,7 +17,7 @@ class App extends Component {
   componentWillMount() {
     let event = new EventEmitter();
     event.on('WILL_MOUNT', () => {
-      console.log('will mount app');
+      console.log('will mount event emiiter app');
     });
     event.emit('WILL_MOUNT');
     
@@ -25,7 +26,7 @@ class App extends Component {
   }
   componentDidMount() {
     let event = new EventEmitter();
-    event.on('DID_MOUNT', ()=> {console.log('did mount app')});
+    event.on('DID_MOUNT', ()=> {console.log('did mount event emitter app')});
     event.emit('DID_MOUNT');
   }
   render() {
@@ -48,5 +49,13 @@ class App extends Component {
     );
   }
 }
+
+ForumDispatcher.register((action) => {
+  console.log(3)
+  console.log('App.js calls registered action in App.js')
+  console.log(3)
+  console.log(`recieved action ${action}`);
+  console.log(action)
+});
 
 export default App;

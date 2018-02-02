@@ -21,7 +21,7 @@ class EventEmitter {
          }
     }
 
-    removeListener = (type, listener ) => {
+    removeListener = (type, listener) => {
         if (this._events[type]) {
             this._events[type].splice(this._events[type].indexOf(listener),1); 
         }

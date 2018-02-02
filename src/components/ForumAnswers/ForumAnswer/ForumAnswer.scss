@@ -1,3 +1,7 @@
-.ForumAnswer {
+.ForumAnswer.ForumAnswer {
+    color: blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     text-align: left;
 }

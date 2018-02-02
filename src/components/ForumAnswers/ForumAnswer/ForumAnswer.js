@@ -7,7 +7,7 @@ import './ForumAnswer.css';
 const ForumAnswer = (props) => {
 
     return (
-        <ListGroupItem className="ForumAnswer">
+        <ListGroupItem className="btn btn-primary ForumAnswer">
             {props.answer.body ? props.answer.body : null}
         </ListGroupItem>
     );
