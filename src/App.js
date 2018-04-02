@@ -16,18 +16,21 @@ class App extends Component {
 
   componentWillMount() {
     let event = new EventEmitter();
+    // pointless since emitting to itself
     event.on('WILL_MOUNT', () => {
       console.log('will mount event emiiter app');
     });
-    event.emit('WILL_MOUNT');
     
-
+    event.emit('WILL_MOUNT');
     event.removeListener('WILL_MOUNT', ()=> {console.log('will mount app')});
   }
   componentDidMount() {
+    
     let event = new EventEmitter();
+    // pointless since emitting to itself
     event.on('DID_MOUNT', ()=> {console.log('did mount event emitter app')});
     event.emit('DID_MOUNT');
+    
   }
   render() {
     return (
@@ -49,15 +52,12 @@ class App extends Component {
     );
   }
 }
-console.log(-1)
-console.log('runs in App.js first, calls ForumDispatcher.register method')
+// console.log('runs in App.js first, calls ForumDispatcher.register method')
+
 ForumDispatcher.register((action) => {
-  console.log(3)
   console.log('App.js calls registered action in App.js')
-  console.log(3)
   console.log(`recieved action ${action}`);
   console.log(action)
 });
-console.log(-1)
 
 export default App;

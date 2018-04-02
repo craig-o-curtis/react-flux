@@ -9,6 +9,7 @@ import ForumAnswers from './ForumAnswers/ForumAnswers';
 import ForumAddAnswerBox from './ForumAddAnswerBox/ForumAddAnswerBox';
 import EventEmitter from '../Flux/eventEmitter';
 import ForumDispatcher from '../Flux/ForumDispatcher';
+
 class Forum extends Component {
     // constructor() {
     //     super();
@@ -48,9 +49,7 @@ class Forum extends Component {
         this.setState({
             allAnswers: arr
         });
-        console.log(1)
         console.log('Forum.js call dispatch on handleAnswer method')
-        console.log(1)
         ForumDispatcher.dispatch({
             actionType : 'FORUM_ANSWER_ADDED',
             newAnswer : e.body
