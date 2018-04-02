@@ -10,8 +10,8 @@ const ForumAnswer = (props) => {
 		<ListGroupItem className="btn btn-outline-light ForumAnswer">
 			<Container>
 				<Row>
-					<Col>
-						<span xs="6">{props.answer.body ? props.answer.body : null}</span>
+					<Col xs="6" className="whitespace">
+						{props.answer.body ? props.answer.body : null}
 					</Col>
 
 					<Col xs="6">

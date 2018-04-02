@@ -10,6 +10,8 @@ import ForumAddAnswerBox from './ForumAddAnswerBox/ForumAddAnswerBox';
 import EventEmitter from '../Flux/eventEmitter';
 import ForumDispatcher from '../Flux/ForumDispatcher';
 
+import ForumStore from '../Stores/ForumStore';
+
 class Forum extends Component {
     // constructor() {
     //     super();
@@ -21,12 +23,14 @@ class Forum extends Component {
     //         ]
     //     };
     // }
+
     state = {
-        allAnswers : [
-            {body: 'a'},
-            {body: 'b'},
-            {body: 'c'},
-        ]
+        // allAnswers : [
+        //     {body: 'a'},
+        //     {body: 'b'},
+        //     {body: 'c'},
+        // ]
+        allAnswers : ForumStore.getAnswers()
     };
 
     componentWillMount() {         

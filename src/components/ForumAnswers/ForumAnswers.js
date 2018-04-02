@@ -7,10 +7,10 @@ import ForumDispatcher from '../../Flux/ForumDispatcher';
 
 class ForumAnswers extends Component {
 
-    handleMarkCorrect(id) {
+    handleMarkCorrect(id, key, answer) {
         console.log('id')
         console.log(id)
-        
+
         ForumDispatcher.dispatch({
             actionType: 'FORUM_ANSWER_MARKED_CORRECT',
             id: id,
