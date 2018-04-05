@@ -5,7 +5,7 @@ import { ListGroupItem, Button, Container, Row, Col } from 'reactstrap';
 import './ForumAnswer.css';
 
 const ForumAnswer = (props) => {
-
+	console.log(props)
 	return (
 		<ListGroupItem className="btn btn-outline-light ForumAnswer">
 			<Container>
@@ -15,7 +15,8 @@ const ForumAnswer = (props) => {
 					</Col>
 
 					<Col xs="6">
-						<Button color="link" onClick={props.onMarkCorrect}>Mark Correct</Button>
+						<Button color="link"
+							onClick={props.onMarkCorrect}>Mark Correct</Button>
 					</Col>
 				</Row>
 			</Container>

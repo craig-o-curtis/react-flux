@@ -48,16 +48,21 @@ class Forum extends Component {
 
     // Works... Why?
     handleAddAnswer = (e) => {
-        let arr = this.state.allAnswers;
-        arr.push({'body':e.body});
-        this.setState({
-            allAnswers: arr
-        });
-        console.log('Forum.js call dispatch on handleAnswer method')
+        // before forum store method
+        // let arr = this.state.allAnswers;
+        // arr.push({'body':e.body});
+        // this.setState({
+        //     allAnswers: arr
+        // });
+
         ForumDispatcher.dispatch({
             actionType : 'FORUM_ANSWER_ADDED',
             newAnswer : e.body
         });
+
+        this.setState({
+            allAnswers: ForumStore.getAnswers()
+        })
     }
 
     render() {

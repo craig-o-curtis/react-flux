@@ -1,4 +1,5 @@
 import EventEmitter from '../Flux/eventEmitter';
+import ForumDispatcher from '../Flux/ForumDispatcher';
 
 // const answerData = {
 //     "1": {
@@ -15,27 +16,60 @@ import EventEmitter from '../Flux/eventEmitter';
 //     },
 // };
 const answerData = [
-    {
-        body: "Isn't that about time travel?",
-        correct: false
-    },
-    {
-        body: "React and Flux are a tool and methodologies for building the front end of web applications",
-        correct: true,
-    },
-    {
-        body: "React is a synonym for 'respond'",
-        correct: false,
-    },
+	{
+		body: "Isn't that about time travel?",
+		correct: false
+	},
+	{
+		body: "React and Flux are a tool and methodologies for building the front end of web applications",
+		correct: true,
+	},
+	{
+		body: "React is a synonym for 'respond'",
+		correct: false,
+	},
 ];
 
 const ForumStore = new EventEmitter();
 
 // mock api call
 ForumStore.getAnswers = () => {
-    return answerData;
+	return answerData;
 }
 
-// export default {answerData, ForumStore};
-// export default answerData;
+// Add answer
+ForumStore.addAnswer = (newAnswer) => {
+	answerData[Object.keys(answerData).length + 1] = {
+		body: newAnswer,
+		correct: false
+	}
+}
+
+// reset and mark 1 as correct
+ForumStore.markAsCorrect = (id) => {
+	alert(id)
+	for (let key in answerData) {
+		answerData[key].correct = false;
+	}
+	answerData[id].correct = true;
+}
+
+// register dispatcher here
+ForumDispatcher.register((action) => {
+
+	switch (action.actionType) {
+		case 'FORUM_ANSWER_MARKED_CORRECT': {
+			alert('marked');
+			
+			break;
+		}
+		case 'FORUM_ANSWER_ADDED': {
+			ForumStore.addAnswer(action.newAnswer);
+			break;
+		}
+
+	}
+});
+
+
 export default ForumStore;
