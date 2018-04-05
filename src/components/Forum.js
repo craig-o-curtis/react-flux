@@ -13,87 +13,88 @@ import ForumDispatcher from '../Flux/ForumDispatcher';
 import ForumStore from '../Stores/ForumStore';
 
 class Forum extends Component {
-    // constructor() {
-    //     super();
-    //     state : {
-    //         allAnswers : [
-    //             {body: 'a'},
-    //             {body: 'b'},
-    //             {body: 'c'},
-    //         ]
-    //     };
-    // }
+	// constructor() {
+	//     super();
+	//     state : {
+	//         allAnswers : [
+	//             {body: 'a'},
+	//             {body: 'b'},
+	//             {body: 'c'},
+	//         ]
+	//     };
+	// }
 
-    state = {
-        // allAnswers : [
-        //     {body: 'a'},
-        //     {body: 'b'},
-        //     {body: 'c'},
-        // ]
-        allAnswers : ForumStore.getAnswers()
-    };
+	state = {
+		// allAnswers : [
+		//     {body: 'a'},
+		//     {body: 'b'},
+		//     {body: 'c'},
+		// ]
+		allAnswers: ForumStore.getAnswers()
+	};
 
-    componentWillMount() {         
-        fetch('https://swapi.co/api/people/')
-        .then(res => res.json())
-        .then(res => {
-            let people = res.results;
-            this.setState({ people });
-        })
-    }
-    componentDidMount() {
-        let event = new EventEmitter();
-        event.emit('WILL_MOUNT');
-    }
+	componentWillMount() {
+		fetch('https://swapi.co/api/people/')
+			.then(res => res.json())
+			.then(res => {
+				let people = res.results;
+				this.setState({ people });
+			})
+	}
+	componentDidMount() {
+		let event = new EventEmitter();
+		event.emit('WILL_MOUNT');
+	}
 
-    // Works... Why?
-    handleAddAnswer = (e) => {
-        // before forum store method
-        // let arr = this.state.allAnswers;
-        // arr.push({'body':e.body});
-        // this.setState({
-        //     allAnswers: arr
-        // });
+	// Works... Why?
+	handleAddAnswer = (e) => {
+		// before forum store method
+		// let arr = this.state.allAnswers;
+		// arr.push({'body':e.body});
+		// this.setState({
+		//     allAnswers: arr
+		// });
 
-        ForumDispatcher.dispatch({
-            actionType : 'FORUM_ANSWER_ADDED',
-            newAnswer : e.body
-        });
+		ForumDispatcher.dispatch({
+			actionType: 'FORUM_ANSWER_ADDED',
+			newAnswer: e.body
+		});
 
-        this.setState({
-            allAnswers: ForumStore.getAnswers()
-        })
-    }
+		this.setState({
+			allAnswers: ForumStore.getAnswers()
+		})
+		console.log(this.state)
+	}
 
-    render() {
-        return (
-            <div className="Forum">
-                <Container>
-                    <Row>
-                        <Col className="p-3 bg-secondary text-white">
-                            <p>SWAPI names:</p>
-                        </Col>
-                    </Row>
-                    <Row className="d-flex justify-content-between">
-                        {this.state.people ? this.state.people.map( (peep, idx) => (
-                        <PeopleSquare key={idx} person={peep.name} />
-                        ) ) : null }
-                    </Row>
-                </Container>
+	render() {
+		return (
+			<div className="Forum">
+				<Container>
+					<Row>
+						<Col className="p-3 bg-secondary text-white">
+							<p>SWAPI names:</p>
+						</Col>
+					</Row>
+					<Row className="d-flex justify-content-between">
+						{this.state.people ? this.state.people.map((peep, idx) => (
+							<PeopleSquare key={idx} person={peep.name} />
+						)) : null}
+					</Row>
+				</Container>
 
-                <Container>
-                    <Row>
-                        <Col xs="12">
-                            <ForumQuestion />
-                            <ForumAnswers allAnswers={this.state.allAnswers} />
-                            <h4>Add an answer</h4>
-                            <ForumAddAnswerBox onAddAnswer={this.handleAddAnswer} />
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        );
-    }
+				<Container>
+					<Row>
+						<Col xs="12">
+							<ForumQuestion />
+							<ForumAnswers allAnswers={this.state.allAnswers} />
+							<h4>Add an answer</h4>
+							<ForumAddAnswerBox onAddAnswer={this.handleAddAnswer} />
+						</Col>
+					</Row>
+				</Container>
+			</div>
+		);
+	}
 }
 
 export default Forum;

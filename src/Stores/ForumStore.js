@@ -39,7 +39,7 @@ ForumStore.getAnswers = () => {
 
 // Add answer
 ForumStore.addAnswer = (newAnswer) => {
-	answerData[Object.keys(answerData).length + 1] = {
+	answerData[Object.keys(answerData).length] = {
 		body: newAnswer,
 		correct: false
 	}
@@ -47,11 +47,13 @@ ForumStore.addAnswer = (newAnswer) => {
 
 // reset and mark 1 as correct
 ForumStore.markAsCorrect = (id) => {
-	alert(id)
+	
 	for (let key in answerData) {
 		answerData[key].correct = false;
 	}
+	console.log(id)
 	answerData[id].correct = true;
+
 }
 
 // register dispatcher here
@@ -59,8 +61,7 @@ ForumDispatcher.register((action) => {
 
 	switch (action.actionType) {
 		case 'FORUM_ANSWER_MARKED_CORRECT': {
-			alert('marked');
-			
+			ForumStore.markAsCorrect(action.id);
 			break;
 		}
 		case 'FORUM_ANSWER_ADDED': {
