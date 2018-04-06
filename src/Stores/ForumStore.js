@@ -1,4 +1,5 @@
-import EventEmitter from '../Flux/eventEmitter';
+// import EventEmitter from '../Flux/eventEmitter'; // custom
+import EventEmitter from 'events';
 import ForumDispatcher from '../Flux/ForumDispatcher';
 import ForumConstants from '../constants/ForumConstants';
 // const answerData = {
