@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 import Forum from './components/Forum';
 import ForumHeader from './components/ForumHeader/ForumHeader';
 
-import ForumDispatcher from './Flux/ForumDispatcher';
-import EventEmitter from './Flux/eventEmitter';
-
 import './App.css';
 
 class App extends Component {
@@ -15,26 +12,8 @@ class App extends Component {
   // }
 
   // componentWillMount() {
-  //   let event = new EventEmitter();
-  //   // pointless since emitting to itself
-  //   event.on('WILL_MOUNT', () => {
-  //     // console.log('will mount event emiiter app');
-  //   });
-    
-  //   event.emit('WILL_MOUNT');
-  //   event.removeListener('WILL_MOUNT', ()=> {
-  //     // console.log('will mount app')
-  //   });
   // }
   // componentDidMount() {
-    
-  //   let event = new EventEmitter();
-  //   // pointless since emitting to itself
-  //   event.on('DID_MOUNT', ()=> {
-  //     //console.log('did mount event emitter app')
-  //   });
-  //   event.emit('DID_MOUNT');
-    
   // }
   render() {
     return (

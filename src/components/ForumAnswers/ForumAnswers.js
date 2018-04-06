@@ -1,21 +1,15 @@
 import React, { Component } from 'react';
 import './ForumAnswers.css';
 
-import ForumConstants from '../../constants/ForumConstants';
-
 import { ListGroup } from 'reactstrap';
 import ForumAnswer from './ForumAnswer/ForumAnswer';
-import ForumDispatcher from '../../Flux/ForumDispatcher';
+import ForumActions from '../../actions/ForumActions';
 
 class ForumAnswers extends Component {
 
 	handleMarkCorrect(id, answer) {
-
-		ForumDispatcher.dispatch({
-			actionType: ForumConstants.FORUM_ANSWER_MARKED_CORRECT,
-			id: id,
-		});
-		// TODO - actually need to pass the id to the dispatcher. currently an '$event'
+		// abstract out dispatcher
+		ForumActions.markAnswerCorrect(id);
 	}
 	
 	render() {

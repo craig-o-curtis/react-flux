@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './ForumAddAnswerBox.css';
 import { InputGroup, InputGroupAddon, Button, Input } from 'reactstrap';
-import ForumDispatcher from '../../Flux/ForumDispatcher';
 
 /**
  * Props:

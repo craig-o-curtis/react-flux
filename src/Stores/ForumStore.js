@@ -90,6 +90,8 @@ ForumDispatcher.register((action) => {
 			ForumStore.addAnswer(action.newAnswer);
 			break;
 		}
+		default:
+			break;
 
 	}
 });

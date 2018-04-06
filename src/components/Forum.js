@@ -3,14 +3,12 @@ import './Forum.css';
 
 import { Container, Row, Col } from 'reactstrap';
 
-import ForumConstants from '../constants/ForumConstants';
 import PeopleSquare from './PeopleSquare/PeopleSquare';
 import ForumQuestion from './ForumQuestion/ForumQuestion';
 import ForumAnswers from './ForumAnswers/ForumAnswers';
 import ForumAddAnswerBox from './ForumAddAnswerBox/ForumAddAnswerBox';
-import EventEmitter from '../Flux/eventEmitter';
-import ForumDispatcher from '../Flux/ForumDispatcher';
 
+import ForumActions from '../actions/ForumActions';
 import ForumStore from '../Stores/ForumStore';
 
 class Forum extends Component {
@@ -49,12 +47,8 @@ class Forum extends Component {
 	}
 
 	handleAddAnswer = (e) => {
-		ForumDispatcher.dispatch({
-			actionType: ForumConstants.FORUM_ANSWER_ADDED,
-			newAnswer: e.body
-		});
-		// Flux Method - handled with .on, since store is an emitter
-			// _onChange listens for changes, React does DOM diffing to handle changes internally
+		// abstract out dispatcher
+		ForumActions.addNewAnswer(e.body);
 	}
 
 	render() {
