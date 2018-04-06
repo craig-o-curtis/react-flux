@@ -8,17 +8,18 @@ import './ForumAnswer.css';
 const ForumAnswer = (props) => {
 	console.log(props)
 	return (
-		<ListGroupItem className="btn btn-outline-light ForumAnswer">
+		<ListGroupItem 
+			className={ classNames( { 'ForumAnswer': true, 'bg-success text-white txt-white': props.answer.correct } ) }>
 			<Container>
 				<Row>
 					<Col xs="6" className="whitespace">
 						{props.answer.body ? props.answer.body : null}
 					</Col>
-
-					<Col xs="6">
-						<Button color="link"
+					<Col></Col>
+					<Col>
+						<Button color={ props.answer.correct ? 'success' : 'light'}
 							onClick={() => props.onMarkCorrect(props.id, props.answer)}>
-							<span className={ classNames( { 'btn': true, 'btn-success': props.answer.correct } ) }>
+							<span>
 								{ props.answer.correct ? '': 'Mark'} Correct
 							</span>
 						</Button>
