@@ -12,23 +12,14 @@ import ForumDispatcher from '../Flux/ForumDispatcher';
 
 import ForumStore from '../Stores/ForumStore';
 
-ForumDispatcher.register((action) => {
-
-	console.log('forum lister')
-	
-});
-
 class Forum extends Component {
-	// constructor() {
-	// 		super();
-	// 		state = {
-	// 			allAnswers: ForumStore.getAnswers()
-	// 		};
-	// }
+	constructor(props) {
+		super(props);
 
-	state = {
-		allAnswers: ForumStore.getAnswers()
-	};
+		this.state = {
+			allAnswers: ForumStore.getAnswers()
+		};
+	}
 
 	componentWillMount() {
 		fetch('https://swapi.co/api/people/')
@@ -62,7 +53,7 @@ class Forum extends Component {
 			newAnswer: e.body
 		});
 		// Flux Method - handled with .on, since store is an emitter
-		// _onChange listens for changes, React does DOM diffing to handle changes internally
+			// _onChange listens for changes, React does DOM diffing to handle changes internally
 	}
 
 	render() {

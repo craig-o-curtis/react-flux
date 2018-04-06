@@ -43,14 +43,10 @@ ForumStore.emitChange = () => {
 	ForumStore.emit('change');
 }
 
-//
-// ForumStore.addChangeListener = (listener) => {
-// 	this.on('change', listener);
-// }
 ForumStore.addChangeListener = (listener) => {
 	// this keyword adds extra layer -- {a: EventEmitter}
 		// gives error : Uncaught TypeError: _this.on is not a function
-	// using ForumStore itself solves problem
+		// using ForumStore itself solves problem
 	ForumStore.on('change', listener);
 }
 
@@ -61,11 +57,11 @@ ForumStore.addAnswer = (newAnswer) => {
 		correct: false
 	}
 	// Forum.js listens for these changes with _onChange
-	// React itself worries about DOM diffing
-	// this keyword deoesn't work
+		// React itself worries about DOM diffing
+		// this keyword deoesn't work
 	ForumStore.emitChange();
 	// or directly use emit
-	// ForumStore.emit('change');
+		// ForumStore.emit('change');
 }
 
 
@@ -77,12 +73,12 @@ ForumStore.markAsCorrect = (id) => {
 
 	answerData[id].correct = true;
 	// Forum.js listens for these changes with _onChange
-	// React itself worries about DOM diffing
+		// React itself worries about DOM diffing
 	ForumStore.emitChange();
 }
 
 // register dispatcher here - listener for actions
-// method would be better named as a 'responder'
+	// method would be better named as a 'responder'
 ForumDispatcher.register((action) => {
 
 	switch (action.actionType) {

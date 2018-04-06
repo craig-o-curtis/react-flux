@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import './ForumAnswer.css';
 
 const ForumAnswer = (props) => {
-	console.log(props)
+	
 	return (
 		<ListGroupItem 
 			className={ classNames( { 'ForumAnswer': true, 'bg-success text-white txt-white': props.answer.correct } ) }>
