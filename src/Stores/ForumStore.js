@@ -64,6 +64,8 @@ ForumStore.addAnswer = (newAnswer) => {
 	// React itself worries about DOM diffing
 	// this keyword deoesn't work
 	ForumStore.emitChange();
+	// or directly use emit
+	// ForumStore.emit('change');
 }
 
 

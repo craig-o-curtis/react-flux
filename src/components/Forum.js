@@ -40,8 +40,12 @@ class Forum extends Component {
 	}
 
 	componentDidMount() {
-		// ForumStore.addChangeListener(this._onChange);
 		ForumStore.addChangeListener( this._onChange );
+		// ForumStore.on('change', this._onChange); // or directly use .on method
+	}
+
+	componentWillUnmount() {
+		ForumStore.removeListener( this._onChange );
 	}
 
 	// added on componentDidMount
