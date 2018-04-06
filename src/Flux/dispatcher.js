@@ -4,14 +4,15 @@ class Dispatcher {
 		this._callbacks = {}; // functions
 	}
 
+	// used as a listener that calls cb's
 	register(callback) {
-
 		let id = `CID_${this._lastId++}`;
 		this._callbacks[id] = callback;
 
 		return id;
 	}
 
+	// announces to registers/listeners
 	dispatch(action) {
 		// invoke every function attached to _callbacks
 		for (var id in this._callbacks) {

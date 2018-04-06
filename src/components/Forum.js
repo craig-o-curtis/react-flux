@@ -12,24 +12,21 @@ import ForumDispatcher from '../Flux/ForumDispatcher';
 
 import ForumStore from '../Stores/ForumStore';
 
+ForumDispatcher.register((action) => {
+
+	console.log('forum lister')
+	
+});
+
 class Forum extends Component {
 	// constructor() {
-	//     super();
-	//     state : {
-	//         allAnswers : [
-	//             {body: 'a'},
-	//             {body: 'b'},
-	//             {body: 'c'},
-	//         ]
-	//     };
+	// 		super();
+	// 		state = {
+	// 			allAnswers: ForumStore.getAnswers()
+	// 		};
 	// }
 
 	state = {
-		// allAnswers : [
-		//     {body: 'a'},
-		//     {body: 'b'},
-		//     {body: 'c'},
-		// ]
 		allAnswers: ForumStore.getAnswers()
 	};
 
@@ -41,29 +38,27 @@ class Forum extends Component {
 				this.setState({ people });
 			})
 	}
+
 	componentDidMount() {
-		let event = new EventEmitter();
-		event.emit('WILL_MOUNT');
+		// ForumStore.addChangeListener(this._onChange);
+		ForumStore.addChangeListener( this._onChange );
 	}
 
-	// Works... Why?
-	handleAddAnswer = (e) => {
-		// before forum store method
-		// let arr = this.state.allAnswers;
-		// arr.push({'body':e.body});
-		// this.setState({
-		//     allAnswers: arr
-		// });
+	// added on componentDidMount
+	// requres using arrow functions to work with this
+	_onChange = () => {
+		this.setState({
+			allAnswers: ForumStore.getAnswers()
+		});
+	}
 
+	handleAddAnswer = (e) => {
 		ForumDispatcher.dispatch({
 			actionType: 'FORUM_ANSWER_ADDED',
 			newAnswer: e.body
 		});
-
-		this.setState({
-			allAnswers: ForumStore.getAnswers()
-		})
-		console.log(this.state)
+		// Flux Method - handled with .on, since store is an emitter
+		// _onChange listens for changes, React does DOM diffing to handle changes internally
 	}
 
 	render() {
