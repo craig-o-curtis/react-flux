@@ -1,6 +1,6 @@
 import EventEmitter from '../Flux/eventEmitter';
 import ForumDispatcher from '../Flux/ForumDispatcher';
-
+import ForumConstants from '../constants/ForumConstants';
 // const answerData = {
 //     "1": {
 //         body: "Isn't that about time travel?",
@@ -82,11 +82,11 @@ ForumStore.markAsCorrect = (id) => {
 ForumDispatcher.register((action) => {
 
 	switch (action.actionType) {
-		case 'FORUM_ANSWER_MARKED_CORRECT': {
+		case ForumConstants.FORUM_ANSWER_MARKED_CORRECT: {
 			ForumStore.markAsCorrect(action.id);
 			break;
 		}
-		case 'FORUM_ANSWER_ADDED': {
+		case ForumConstants.FORUM_ANSWER_ADDED: {
 			ForumStore.addAnswer(action.newAnswer);
 			break;
 		}

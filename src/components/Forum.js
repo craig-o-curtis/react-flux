@@ -3,6 +3,7 @@ import './Forum.css';
 
 import { Container, Row, Col } from 'reactstrap';
 
+import ForumConstants from '../constants/ForumConstants';
 import PeopleSquare from './PeopleSquare/PeopleSquare';
 import ForumQuestion from './ForumQuestion/ForumQuestion';
 import ForumAnswers from './ForumAnswers/ForumAnswers';
@@ -49,7 +50,7 @@ class Forum extends Component {
 
 	handleAddAnswer = (e) => {
 		ForumDispatcher.dispatch({
-			actionType: 'FORUM_ANSWER_ADDED',
+			actionType: ForumConstants.FORUM_ANSWER_ADDED,
 			newAnswer: e.body
 		});
 		// Flux Method - handled with .on, since store is an emitter
